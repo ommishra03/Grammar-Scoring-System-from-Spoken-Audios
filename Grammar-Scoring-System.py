@@ -1,4 +1,3 @@
- 
 import streamlit as st
 st.set_page_config(page_title="Grammar-Scoring-System", layout="centered")
 
@@ -14,9 +13,16 @@ import pandas as pd
 
 @st.cache_resource
 def load_models():
-    # Use tiny or base model with optimized CPU settings
     whisper_model = WhisperModel("tiny", compute_type="int8")
-    nlp_model = spacy.load("en_core_web_sm")
+    
+    # Ensure spaCy model is available
+    try:
+        nlp_model = spacy.load("en_core_web_sm")
+    except OSError:
+        from spacy.cli import download
+        download("en_core_web_sm")
+        nlp_model = spacy.load("en_core_web_sm")
+        
     grammar_tool = language_tool_python.LanguageTool('en-US')
     return whisper_model, nlp_model, grammar_tool
 
@@ -122,12 +128,17 @@ def plot_error_types(error_types):
 def download_csv(scores_dict):
     df = pd.DataFrame([scores_dict])
     return df.to_csv(index=False).encode('utf-8')
+
+# UI Section
+st.title("🎧 Grammar Scoring System from Speech")
+st.caption("🚀 Drop your audio and get roasted (academically, of course).")
 st.write("Drop your audio below and let this savage tool go full English teacher mode on you. It'll catch your grammar crimes, vocab blunders, and flow fails.")
 
 uploaded_file = st.file_uploader("Upload your audio file (WAV, MP3, M4A):", type=["wav", "mp3", "m4a"])
 
 if uploaded_file is not None:
-    with tempfile.NamedTemporaryFile(delete=False, suffix=".wav") as tmp_file:
+    file_suffix = os.path.splitext(uploaded_file.name)[1]
+    with tempfile.NamedTemporaryFile(delete=False, suffix=file_suffix) as tmp_file:
         tmp_file.write(uploaded_file.read())
         temp_audio_path = tmp_file.name
 
