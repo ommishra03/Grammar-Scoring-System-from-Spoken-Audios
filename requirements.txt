@@ -1,5 +1,5 @@
 streamlit
-faster-wishper
+faster-whisper
 spacy
 language_tool_python
 textstat
