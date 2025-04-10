@@ -9,6 +9,7 @@ from faster_whisper import WhisperModel
 import requests
 import spacy
 
+st.set_page_config(layout="wide")
 # Load spaCy model and cache it
 @st.cache_resource
 
