@@ -1,7 +1,5 @@
 streamlit
-openai-whisper==20230314
-torch==2.2.1+cpu
---extra-index-url https://download.pytorch.org/whl/cpu
+faster-wishper
 spacy
 language_tool_python
 textstat
