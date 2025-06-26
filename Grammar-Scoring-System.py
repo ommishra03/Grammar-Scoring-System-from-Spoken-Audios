@@ -54,7 +54,7 @@ def evaluate_grammar(text):
         }
 
     response = requests.post(
-        "https://api.languagetool.org/v2/check",
+        "paste api",
         data={"text": text, "language": "en-US"}
     )
     matches = response.json().get("matches", [])
