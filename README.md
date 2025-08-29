@@ -11,7 +11,6 @@ A smart, AI-powered Streamlit web app that transcribes audio files and evaluates
 - 📊 **Fluency & Vocabulary Scoring**
 - 📉 **Detailed Error Type Breakdown** (Grammar, Spelling, Style, Redundancy, etc.)
 - 📈 **Visual Charts** for better insights
-- 🌐 **Streamlit Web UI** with an intuitive and responsive layout
 
 ---
 
@@ -94,7 +93,6 @@ A smart, AI-powered Streamlit web app that transcribes audio files and evaluates
     
     🔍 LanguageTool API for grammar checking
     
-    🧩 Streamlit for rapid web app deployment
 
 📜 License
 This project is open-source and available under the MIT License.
